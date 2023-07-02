@@ -32,6 +32,14 @@ TreeNode* insertNode(TreeNode* node, int value) {
     return node;
 }
 
+TreeNode* deleteNode(TreeNode* node, int value);
+
+TreeNode* findMin(TreeNode* node) {
+    while (node->left != nullptr)
+        node = node->left;
+    return node;
+}
+
 TreeNode* deleteNode(TreeNode* node, int value) {
     if (node == nullptr)
         return nullptr;
@@ -62,11 +70,6 @@ TreeNode* deleteNode(TreeNode* node, int value) {
     return node;
 }
 
-TreeNode* findMin(TreeNode* node) {
-    while (node->left != nullptr)
-        node = node->left;
-    return node;
-}
 
 bool findNode(TreeNode* node, int value) {
     if (node == nullptr)
@@ -102,27 +105,34 @@ void handleClient(int clientSocket) {
         std::string cmd, valueStr;
         iss >> cmd >> valueStr;
 
+        std::string response;
+
         if (cmd == "insert") {
             int value = std::stoi(valueStr);
             root = insertNode(root, value);
-            std::cout << "Inserted " << value << " into the BST." << std::endl;
+            // std::cout << "Inserted " << value << " into the BST." << std::endl;
+            response = "Inserted " + valueStr + " into the BST.";
         } else if (cmd == "delete") {
             int value = std::stoi(valueStr);
             root = deleteNode(root, value);
-            std::cout << "Deleted " << value << " from the BST." << std::endl;
+            // std::cout << "Deleted " << value << " from the BST." << std::endl;
+            response = "Deleted " + valueStr + " from the BST.";
         } else if (cmd == "find") {
             int value = std::stoi(valueStr);
             bool found = findNode(root, value);
             if (found)
-                std::cout << value << " found in the BST." << std::endl;
+                // std::cout << value << " found in the BST." << std::endl;
+                response = valueStr + " found in the BST.";
             else
-                std::cout << value << " not found in the BST." << std::endl;
+                // std::cout << value << " not found in the BST." << std::endl;
+                response = valueStr + " not found in the BST.";
         } else {
-            std::cerr << "Error: Invalid command." << std::endl;
+            // std::cerr << "Error: Invalid command." << std::endl;
+            response = "Error: Invalid command.";
         }
 
         // Send response to client
-        std::string response = "OK";
+        // std::string response = "OK";
         ssize_t bytesSent = send(clientSocket, response.c_str(), response.length(), 0);
         if (bytesSent != response.length()) {
             std::cerr << "Error: Failed to send response to client." << std::endl;

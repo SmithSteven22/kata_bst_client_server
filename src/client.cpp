@@ -4,6 +4,7 @@
 #include <arpa/inet.h>
 #include <unistd.h>
 
+// https://marketsplash.com/tutorials/cpp/cplusplus-scoket/
 
 constexpr int BUFFER_SIZE = 1024; //  Since it is marked as constexpr, the compiler will replace all occurrences of BUFFER_SIZE in the code with the value 1024 during the compilation process.
 
