@@ -12,3 +12,16 @@ Similarly to the **client files:**
 -  **server.h:** contains functions to test
 -  **server_test.cpp:** test cases
 -  **server.cpp:** final solution
+
+# TDD is slow (^_^)
+
+# Thread
+To create a multithreaded version of the solution, threading would be introduced by including **<thread>** to simultaneously handle the user input and the communication with the server. 
+
+### References
+[1] https://marketsplash.com/tutorials/cpp/cplusplus-scoket/
+
+
+[2] https://www.geeksforgeeks.org/binary-search-tree-set-1-search-and-insertion/
+
+
